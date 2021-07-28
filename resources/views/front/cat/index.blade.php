@@ -9,10 +9,17 @@
                 <ul class="list-unstyled templatemo-accordion">
                     <li class="pb-3">
                         @foreach(\App\Models\Category::all() as $key => $value)
-                            <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="{{route('cat',['selflink'=>$value['selflink']])}}">
+                            <a class="nav-link dropdown-toggle" href="{{route('cat',['selflink'=>$value['selflink']])}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{$value['name']}}
-
                             </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{route('cat',['selflink'=>$value['selflink']])}}">Forma</a>
+                                <a class="dropdown-item" href="#">T-Shirt</a>
+                                <a class="dropdown-item" href="#">Aksesuar</a>
+                                <a class="dropdown-item" href="#">Antreman Kıyafetleri</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{route('cat',['selflink'=>$value['selflink']])}}">Hepsi</a>
+                            </div>
                         @endforeach
                     </li>
                 </ul>
@@ -21,19 +28,9 @@
             <div class="col-lg-9">
                 <div class="row">
                     <div class="col-md-6">
-                        <ul class="list-inline shop-top-menu pb-3 pt-1">
-                            <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none mr-3" style="font-family: 'Arial Black'" href="#">Erkek</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none mr-3" style="font-family: 'Arial Black'" href="#">Kadın </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none" style="font-family: 'Arial Black'" href="#">Çocuk </a>
-                            </li>
-                        </ul>
+
                     </div>
-                    <div class="col-md-6 pb-4">
+                    <div class="col-md-6 pb-4" >
                         <div class="search-bar">
                             <form action="{{route('search')}}"></form>
                             <div class="col-md-9">
@@ -50,9 +47,9 @@
                         @foreach($chunk as $key =>$value)
 
                             <div class="col-md-4">
-                                <div class="card mb-4 product-wap rounded-0">
+                                <div class="card mb-4 product-wap rounded-0 forma">
                                     <div class="card rounded-0" href="{{route('detay',['selflink'=>$value['selflink']])}}">
-                                        <img class="card-img rounded-0 img-fluid"  src="{{asset($value['image'])}}"></a>
+                                        <img class="card-img rounded-0 img-fluid"  src="{{asset($value['image'])}}">
                                         <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                             <ul class="list-unstyled">
 

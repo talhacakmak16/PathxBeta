@@ -17,13 +17,7 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="{{asset('assets/css/fontawesome.min.css')}}">
-    <!--
 
-    TemplateMo 559 Zay Shop
-
-    https://templatemo.com/tm-559-zay-shop
-
-    -->
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
@@ -76,13 +70,13 @@
                         <a class="nav-link" href="{{route('home')}}">Anasayfa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">Hakkımızda</a>
+                        <a class="nav-link" href="{{route('about')}}">Hakkımızda</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('shop')}}">Mağaza</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">İletişim</a>
+                        <a class="nav-link" href="{{route('contact')}}">İletişim</a>
                     </li>
 
 
@@ -106,15 +100,18 @@
                       @endif
                   @else
                       <li class="nav-item dropdown">
-                          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                              {{ Auth::user()->name }}
+                          <a id="navbarDropdown" class="nav-link " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                              {{ Auth::user()->name }}{{"  "}} <img src="{{asset('images/front/user.png')}}"style="height: 30px;width: 30px;" alt="">
                           </a>
 
                           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="#">
+                                  Profil
+                              </a>
                               <a class="dropdown-item" href="{{ route('logout') }}"
                                  onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                  {{ __('Logout') }}
+                                  {{ __('Çıkış') }}
                               </a>
 
                               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -156,7 +153,7 @@
         <div class="row">
 
             <div class="col-md-4 pt-5">
-                <h2 class="h2 text-success border-bottom pb-3 border-light logo">Pathx </h2>
+                <h1 class="h2  border-bottom pb-3 border-light logo" style="color: purple">Pathx </h1>
                 <ul class="list-unstyled text-light footer-link-list">
                     <li>
                         <i ><img src="{{asset('images/front/location-pin.png')}}" style="height: 30px;width: 30px;margin-right: 5px;" alt=""></i>
@@ -175,14 +172,14 @@
 
             <div class="col-md-4 pt-5">
                 <h2 class="h2 text-light border-bottom pb-3 border-light">Ürünler</h2>
-                <ul class="list-unstyled text-light footer-link-list">
-                    <li><a class="text-decoration-none" href="#">Futbol Forma</a></li>
-                    <li><a class="text-decoration-none" href="#">Basketbol Forma</a></li>
-                    <li><a class="text-decoration-none" href="#">Spor Ayakkabı</a></li>
-                    <li><a class="text-decoration-none" href="#">Antreman Kıyafetleri</a></li>
-                    <li><a class="text-decoration-none" href="#">Futbol Şort</a></li>
-                    <li><a class="text-decoration-none" href="#">Basketbol Şort</a></li>
-                    <li><a class="text-decoration-none" href="#">Futbol ve Basketbol Top</a></li>
+                <ul class="list-unstyled  footer-link-list">
+                    <li class="foot"><a class="text-decoration-none" href="#">Futbol Forma</a></li>
+                    <li class="foot"><a class="text-decoration-none" href="#">Basketbol Forma</a></li>
+                    <li class="foot"><a class="text-decoration-none" href="#">Spor Ayakkabı</a></li>
+                    <li class="foot"><a class="text-decoration-none" href="#">Antreman Kıyafetleri</a></li>
+                    <li class="foot"><a class="text-decoration-none" href="#">Futbol Şort</a></li>
+                    <li class="foot"><a class="text-decoration-none" href="#">Basketbol Şort</a></li>
+                    <li class="foot"><a class="text-decoration-none" href="#">Futbol ve Basketbol Top</a></li>
                 </ul>
             </div>
 
@@ -204,7 +201,7 @@
                 <div class="w-100 my-3 border-top border-light"></div>
             </div>
             <div class="col-auto me-auto">
-                <ul class="list-inline text-left footer-icons">
+                <ul class="list-inline text-left">
                     <li class="list-inline-item border border-light rounded-circle text-center">
                         <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><img
                                 src="{{asset('images/front/facebook.png')}}" style="height: 50px;width: 50px;" alt=""></a>

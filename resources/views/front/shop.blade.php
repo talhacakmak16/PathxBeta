@@ -4,15 +4,25 @@
     <div class="container py-5">
         <div class="row">
 
+
+
             <div class="col-lg-3">
                 <h1 class="h2 pb-4">Kategoriler</h1>
                 <ul class="list-unstyled templatemo-accordion">
                     <li class="pb-3">
+                    <li class="nav-item dropdown">
                         @foreach(\App\Models\Category::all() as $key => $value)
-                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="{{route('cat',['selflink'=>$value['selflink']])}}">
+                        <a class="nav-link dropdown-toggle" href="{{route('cat',['selflink'=>$value['selflink']])}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{$value['name']}}
-
                         </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{route('cat',['selflink'=>$value['selflink']])}}">Forma</a>
+                            <a class="dropdown-item" href="#">T-Shirt</a>
+                            <a class="dropdown-item" href="#">Aksesuar</a>
+                            <a class="dropdown-item" href="#">Antreman Kıyafetleri</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{route('cat',['selflink'=>$value['selflink']])}}">Hepsi</a>
+                        </div>
                         @endforeach
                     </li>
                 </ul>
@@ -42,9 +52,9 @@
                     @foreach($chunk as $key =>$value)
 
                     <div class="col-md-4">
-                        <div class="card mb-4 product-wap rounded-0">
+                        <div class="card mb-4 product-wap rounded-0 forma" >
                             <div class="card rounded-0" href="{{route('detay',['selflink'=>$value['selflink']])}}">
-                                  <img class="card-img rounded-0 img-fluid"  src="{{asset($value['image'])}}"></a>
+                                  <img class="card-img rounded-0 img-fluid"  src="{{asset($value['image'])}}">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
 

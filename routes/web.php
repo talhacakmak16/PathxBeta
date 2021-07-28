@@ -23,16 +23,18 @@ Route::get('/','front\IndexController@index')->name('home');
 Route::get('/dogrulama','MainController@auth')->name('auth');
 Route::post('/kaydet','MainController@save')->name('save');
 Route::post('/check','MainController@check')->name('check');
-Route::get('/cıkıs','MainController@logout')->name('logout');
+Route::get('/cikis','MainController@logout')->name('logout');
 Route::get('/kategori/{selflink}','front\cat\IndexController@index')->name('cat');
 Route::get('/arama','front\search\IndexController@index')->name('search');
+Route::get('/hakkimizda','front\IndexController@about')->name('about');
+Route::get('/iletisim','front\IndexController@contact')->name('contact');
 
 
 Auth::routes();
 
 Route::get('/home','front\IndexController@index')->name('home');
 
-Route::group(['namespace'=>'admin','prefix'=>'admin','as'=>'admin.'],function ()
+Route::group(['namespace'=>'admin','middleware'=>'auth','prefix'=>'admin','as'=>'admin.'],function ()
 {
     Route::get('/','IndexController@index')->name('index');
 

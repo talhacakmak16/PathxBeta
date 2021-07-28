@@ -8,12 +8,21 @@
                 <h1 class="h2 pb-4">Kategoriler</h1>
                 <ul class="list-unstyled templatemo-accordion">
                     <li class="pb-3">
+                    <li class="nav-item dropdown">
                         @foreach(\App\Models\Category::all() as $key => $value)
-                            <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="{{route('cat',['selflink'=>$value['selflink']])}}">
+                            <a class="nav-link dropdown-toggle" href="{{route('cat',['selflink'=>$value['selflink']])}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{$value['name']}}
-
                             </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{route('cat',['selflink'=>$value['selflink']])}}">Forma</a>
+                                <a class="dropdown-item" href="#">T-Shirt</a>
+                                <a class="dropdown-item" href="#">Aksesuar</a>
+                                <a class="dropdown-item" href="#">Antreman Kıyafetleri</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{route('cat',['selflink'=>$value['selflink']])}}">Hepsi</a>
+                            </div>
                         @endforeach
+
                     </li>
                 </ul>
             </div>
@@ -22,25 +31,17 @@
                 <div class="row">
                     <div class="col-md-6">
                         <ul class="list-inline shop-top-menu pb-3 pt-1">
-                            <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none mr-3" style="font-family: 'Arial Black'" href="#">Erkek</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none mr-3" style="font-family: 'Arial Black'" href="#">Kadın </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none" style="font-family: 'Arial Black'" href="#">Çocuk </a>
-                            </li>
+
                         </ul>
                     </div>
                     <div class="col-md-6 pb-4">
                         <div class="search-bar">
-                            <form action="{{route('search')}}"></form>
+                            <form action="{{route('search')}}" method="post">
                             <div class="col-md-9">
                                 <input type="text" value="" name="q" onfocus="this.value=' ';"  placeholder="arama...">
                                 <button type="submit" style="border: none;background: none;"><img src="https://img.icons8.com/ios-glyphs/30/000000/search--v1.png"/></button>
                             </div>
-
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -50,39 +51,35 @@
                         @foreach($chunk as $key =>$value)
 
                             <div class="col-md-4">
-                                <div class="card mb-4 product-wap rounded-0">
-                                    <div class="card rounded-0">
+                                <div class="card mb-4 product-wap rounded-0 forma">
+                                    <div class="card rounded-0" href="{{route('detay',['selflink'=>$value['selflink']])}}">
                                         <img class="card-img rounded-0 img-fluid"  src="{{asset($value['image'])}}">
                                         <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                             <ul class="list-unstyled">
-                                                <li><a class="btn btn-success text-white" href="{{route('detay',['selflink'=>$value['selflink']])}}"><i class="far fa-heart"></i></a></li>
-                                                <li><a class="btn btn-success text-white mt-2" href="{{route('detay',['selflink'=>$value['selflink']])}}"><i class="far fa-eye"></i></a></li>
-                                                <li><a class="btn btn-success text-white mt-2" href="{{route('detay',['selflink'=>$value['selflink']])}}"><i class="fas fa-cart-plus"></i></a></li>
+
+                                                <li style="margin-top: 190px;margin-left: 10px;"><a class="btn btn-success text-white mt-2" style="margin-left: 180px;margin-top: 100px;" href="{{route('sepet',['id'=>$value['id']])}}"><i><img
+                                                                src="{{asset('images/front/plus.png')}}" style="width: 30px;height: 30px;" alt=""></i></a></li>
                                             </ul>
+
                                         </div>
                                     </div>
-                                    <div class="card-body">
-                                        <a href="{{route('detay',['selflink'=>$value['selflink']])}}" style="font-family: 'Arial'" class="h3 text-decoration-none">{{$value['name']}}</a>
+                                    <div class="card-body" style="height: 150px;width: 255px;">
+                                        <a href="{{route('detay',['selflink'=>$value['selflink']])}}" style="font-family: 'Arial';text-align: center" class="h3 text-decoration-none">  {{$value['name']}}</a>
                                         <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                            <li style="font-family: 'Arial Black';font-size: 12px">{{\App\Models\Teams::getField($value['teamid'],"name")}}</li>
-                                            <li class="pt-2">
-                                                <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-                                                <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-                                                <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-                                                <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-                                                <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-                                            </li>
+                                            <li style="font-style: italic; text-align: center;">{{\App\Models\Teams::getField($value['teamid'],"name")}}</li>
+
                                         </ul>
                                         <ul class="list-unstyled d-flex justify-content-center mb-1">
                                             <li>
-                                                <i class="text-warning fa fa-star"></i>
-                                                <i class="text-warning fa fa-star"></i>
-                                                <i class="text-warning fa fa-star"></i>
-                                                <i class="text-muted fa fa-star"></i>
-                                                <i class="text-muted fa fa-star"></i>
+                                                <i><img src="{{asset('images/front/star.png')}}" style="height: 17px;width: 17px;" alt=""></i>
+                                                <i><img src="{{asset('images/front/star.png')}}" style="height: 17px;width: 17px;" alt=""></i>
+                                                <i><img src="{{asset('images/front/star.png')}}" style="height: 17px;width: 17px;" alt=""></i>
+                                                <i><img src="{{asset('images/front/star2.png')}}" style="height: 17px;width: 17px;" alt=""></i>
+                                                <i><img src="{{asset('images/front/star2.png')}}" style="height: 17px;width: 17px;" alt=""></i>
+
                                             </li>
                                         </ul>
-                                        <p class="text-center mb-0">{{$value['price']}}</p>
+                                        <p class="text-center mb-0">{{$value['price']}} ₺</p>
                                     </div>
                                 </div>
                             </div>
