@@ -16,7 +16,7 @@
             @if(session('Status'))
                 {{session('status')}}
             @endif
-            <form class="col-md-9 m-auto" method="post" action="{{route('basket.store')}}" role="form">
+            <form class="col-md-9 m-auto" method="post" action="{{route('sepet.store')}}" role="form">
                 @csrf
                 <div class="row">
                     <div class="form-group col-md-6 mb-3">

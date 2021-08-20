@@ -17,6 +17,7 @@ class CreateBasketModelsTable extends Migration
             $table->id('id');
             $table->string('name');
             $table->string('price');
+            $table->integer('adet');
             $table->string('image');
             $table->timestamps();
         });

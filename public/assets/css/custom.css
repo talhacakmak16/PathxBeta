@@ -1,0 +1,114 @@
+/*
+Custom Css
+*/
+
+.services-icon-wap:hover {
+
+    background-color: #9b04ff;
+    border-radius: 100px;
+}
+/*
+-----------> İletisim Form CSS <-------------
+ */
+#cont {
+    background-color: #9b04ff;
+}
+#contact {
+ font-family: "Source Sans Pro";
+}
+#ss{
+    position: static;
+    border: #0a0302;
+}
+#dd {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-top: 50px;
+    margin-bottom: 150px;
+    background-color: white;
+    border-radius: 5px;
+}
+#kk {
+    padding: 70px;
+    width: 500px;
+    height: 700px;
+}
+#but:hover {
+    border: black;
+   background-color: black;
+}
+/*
+---------> Ürün Görünümü <-----------
+ */
+.forma:hover {
+    border: solid 3px lightslategray;
+}
+.foot{
+    color: white;
+}
+.foot:hover{
+color: #9b04ff;
+}
+
+.src
+{
+
+   border: solid 0;
+   background-color: #e2e2e2;
+    border-radius: 20px;
+}
+/* ---->Side Bar Menü Düzenlemeleri <----- */
+.str:hover
+{
+
+    border-radius: 25px;
+    width: 120px;
+    text-align: center;
+    text-decoration: none;
+    transition-duration:0.3s;
+
+}
+.str
+{
+
+    margin-bottom: 15px;
+    width: 150px;
+    text-align: center;
+    z-index: 0;
+}
+.side-item
+{
+ font-family: Poppins;
+    text-align: center;
+    text-underline:none;
+    text-decoration: none;
+}
+.side-item:hover{
+    text-decoration: none;
+    z-index: auto;
+}
+/*----< Hakkımızda >---*/
+.about{
+    background-color: #9b04ff;
+}
+/* -----> Sepet <---- */
+.al:hover
+{
+    border: black solid 1px;
+    border-radius: 35px;
+    transition-duration: 0.4s;
+    background-color: #7fbdca;
+
+}
+.al
+{
+    width: 150px;
+}
+
+.bit
+{
+    ;
+}
+.el:hover
+{
+    border: black solid 3px;
+}

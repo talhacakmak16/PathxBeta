@@ -82,6 +82,6 @@ class BasketController extends Controller
     public function flush()
     {
         Session::forget('basket');
-        return redirect('/');
+        return redirect('/home');
     }
 }

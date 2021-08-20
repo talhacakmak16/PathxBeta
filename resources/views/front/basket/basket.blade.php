@@ -31,9 +31,10 @@
                             <td><img src="{{$value['image']}}" alt=""></td>
                             <td>{{$value['name']}}</td>
                             <td>Var</td>
-                            <td><input class="form-control" type="number" value="1" /></td>
+
+                            <td><input class="form-control"  type="number" value=1 /></td>
                             <td class="text-right">{{$value['price']}} TL</td>
-                            <td class="text-right"> <a href="{{route('basket.remove',['id'=>$key])}}" ><button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-trash"></i> </button></a> </td>
+                            <td class="text-right"> <a href="{{route('sepet.remove',['id'=>$key])}}" ><button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-trash"></i> </button></a> </td>
                         </tr>
                         @endforeach
 
@@ -71,11 +72,11 @@
             </div>
             <div class="col mb-2">
                 <div class="row">
-                    <div class="col-sm-12  col-md-6">
-                        <a href="{{route('shop')}}"> <button class="btn btn-block btn-light">Alışverişe Devam Et</button></a>
+                    <div class="col-sm-12  col-md-6 al">
+                        <a class="" href="{{route('shop')}}"> <button class="btn btn-block">Alışverişe Devam Et</button></a>
                     </div>
-                    <div class="col-sm-12 col-md-6 text-right">
-                        <a href="{{route('basket.complete')}}"><button class="btn btn-lg btn-block btn-success ">Satın Al</button></a>
+                    <div class="col-sm-12 col-md-6 text-right el">
+                        <a href="{{route('sepet.complete')}}"><button class="btn btn-block ">Satın Al</button></a>
                     </div>
                 </div>
             </div>

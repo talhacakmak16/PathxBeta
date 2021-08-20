@@ -15,6 +15,7 @@ class basketHelper
             'price'=>$price,
 
 
+
         ];
 
         Session::put('basket.'.rand(1,9000),$array);
@@ -41,4 +42,5 @@ class basketHelper
     {
         return count(Session::get('basket'));
     }
+
 }

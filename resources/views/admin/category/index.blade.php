@@ -23,18 +23,30 @@
                                     <th>Sil</th>
                                 </tr></thead>
                                 <tbody>
-                                @foreach($data as $key => $value)
-                                    <tr>
-                                        <td>{{$value['name']}}</td>
+                                @foreach($categories as $value)
+                                     <tr>
+
+                                        <td>
+                                            {{$value['name']}}
+
+                                                <table>
+                                                    <tr>
+                                                @if(count($value->childs))
+                                                    @include('admin.category.manageChild',['childs'=>$value->childs])
+                                                    @endif
+                                                    </tr>
+                                                </table>
+
+                                        </td>
                                         <td><a href="{{route('admin.category.edit',['id'=>$value['id']])}}">Düzenle</a></td>
 
                                         <td><a href="{{route('admin.category.delete',['id'=>$value['id']])}}">Sil</a></td>
+                                     </tr>
 
-                                    </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                            {{$data->links()}}
+
                         </div>
                     </div>
                         <a style="margin-left: 15px" href="{{route('admin.category.create')}}" class="btn btn-success">Kategori Ekle</a>

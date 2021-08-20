@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\front\cat\IndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,24 +18,23 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });*/
 
-Route::get('/','front\IndexController@index')->name('home');
+Route::get('/home','front\IndexController@index')->name('home');
 
 
 Route::get('/dogrulama','MainController@auth')->name('auth');
 Route::post('/kaydet','MainController@save')->name('save');
 Route::post('/check','MainController@check')->name('check');
 Route::get('/cikis','MainController@logout')->name('logout');
-Route::get('/kategori/{selflink}','front\cat\IndexController@index')->name('cat');
+Route::get('/kategori/{selflink}', [IndexController::class, 'index'])->name('cat');
 Route::get('/arama','front\search\IndexController@index')->name('search');
 Route::get('/hakkimizda','front\IndexController@about')->name('about');
 Route::get('/iletisim','front\IndexController@contact')->name('contact');
 
 
+
 Auth::routes();
 
-Route::get('/home','front\IndexController@index')->name('home');
-
-Route::group(['namespace'=>'admin','middleware'=>'auth','prefix'=>'admin','as'=>'admin.'],function ()
+Route::group(['namespace'=>'admin','middleware'=>['auth','AdminCtrl'],'prefix'=>'admin','as'=>'admin.'],function ()
 {
     Route::get('/','IndexController@index')->name('index');
 
@@ -103,13 +103,20 @@ Route::group(['namespace'=>'admin','middleware'=>'auth','prefix'=>'admin','as'=>
 
 
 });
-
+Route::group(['prefix'=>'sepet','namespace'=>'front','as'=>'sepet.'],function ()
+{
+    Route::get('/ekle/{id}','BasketController@index')->name('sepet');
+    Route::get('/','BasketController@edit')->name('checkout');
+    Route::get('/sil/{id}','BasketController@remove')->name('remove');
+    Route::get('/tamamla','BasketController@complete')->name('complete')->middleware(['auth','AdminCtrl']);
+    Route::post('/tamamla','BasketController@store')->name('store')->middleware(['auth','AdminCtrl']);
+    Route::get('/temizle','BasketController@flush')->name('flush');
+});
 
 Route::get('/ürün/detay/{selflink}','front\jersey\IndexController@index')->name('detay');
 Route::get('/shop','front\shop\IndexController@index')->name('shop');
-Route::get('/sepet/ekle/{id}','front\BasketController@index')->name('sepet');
-Route::get('/sepet','front\BasketController@edit')->name('checkout');
-Route::get('/sepet/sil/{id}','front\BasketController@remove')->name('basket.remove');
-Route::get('/sepet/tamamla','front\BasketController@complete')->name('basket.complete');
-Route::post('/sepet/tamamla','front\BasketController@store')->name('basket.store');
-Route::get('/sepet/temizle','front\BasketController@flush')->name('basket.flush');
+
+
+
+
+

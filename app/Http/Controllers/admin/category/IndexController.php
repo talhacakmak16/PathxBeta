@@ -11,26 +11,30 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $data = Category::paginate(10);
-        return view('admin.category.index',['data'=>$data]);
+        $categories = Category::query()->where('parent_id', '=', 0)->get();
+        $allCategories = Category::query()->paginate(10);
+        return view('admin.category.index',compact('categories','allCategories'));
     }
     public function create()
     {
-        return view('admin.category.create');
+        $categories = Category::query()->where('parent_id', '=', 0)->get();
+        $allCategories = Category::query()->paginate(10);
+
+        return view('admin.category.create',compact('categories','allCategories'));
     }
     public function store(Request $request)
     {
-        $all = $request->except('_token');
-        $all['selflink'] =mHelper::permalink($all['name']);
-        $insert = Category::create($all);
-        if ($insert)
-        {
-            return redirect('admin/category')->with('status','Kategori Başarı İle Eklendi');
-        }
-        else
-        {
-            return redirect()->back()->with('status','Kategori Eklenemedi');
-        }
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $input = $request->except('_token');
+        $input['parent_id'] = empty($input['parent_id']) ? 0 : $input['parent_id'];
+        $input['selflink']=mHelper::permalink($input['name']);
+
+        Category::create($input);
+        return redirect('admin/category')->with('status', 'New Category added successfully.');
+
     }
     public function edit($id)
     {

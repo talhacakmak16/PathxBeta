@@ -11,12 +11,16 @@ class IndexController extends Controller
 {
     public function index($selflink)
     {
-         $c = Category::where('selflink','=',$selflink)->count();
-         if ($c!=0)
+         $c = Category::query()->where('selflink', $selflink)->exists();
+
+         if ($c)
          {
-             $w = Category::where('selflink','=',$selflink)->get();
-             $data = TeamJerseys::where('categoryid','=',$w[0]['id'])->paginate(10);
-             return view('front.cat.index',['info'=>$w,'data'=>$data]);
+             $w = Category::query()->where('selflink','=', $selflink)->first();
+             $data = TeamJerseys::query()->where('categoryid', $w->id)->paginate(15);
+             return view('front.cat.index',[
+                 'info'=>$w,
+                 'data' => $data
+             ]);
          }
          else
          {
@@ -25,4 +29,6 @@ class IndexController extends Controller
 
          }
     }
+
+
 }

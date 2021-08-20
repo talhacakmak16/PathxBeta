@@ -3,26 +3,19 @@
     <!-- Start Content -->
     <div class="container py-5">
         <div class="row">
-
-
-
             <div class="col-lg-3">
                 <h1 class="h2 pb-4">Kategoriler</h1>
                 <ul class="list-unstyled templatemo-accordion">
                     <li class="pb-3">
                     <li class="nav-item dropdown">
-                        @foreach(\App\Models\Category::all() as $key => $value)
-                        <a class="nav-link dropdown-toggle" href="{{route('cat',['selflink'=>$value['selflink']])}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{$value['name']}}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{route('cat',['selflink'=>$value['selflink']])}}">Forma</a>
-                            <a class="dropdown-item" href="#">T-Shirt</a>
-                            <a class="dropdown-item" href="#">Aksesuar</a>
-                            <a class="dropdown-item" href="#">Antreman Kıyafetleri</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route('cat',['selflink'=>$value['selflink']])}}">Hepsi</a>
+                        <div class="str" style="margin-bottom: 25px;">
+                        <a class="side-item" href="{{route('shop')}}"><h5> Hepsi ( {{$sayi=\App\Models\TeamJerseys::query()->count()}})  </h5></a>
                         </div>
+                        @foreach(\App\Models\Category::all() as $value)
+
+                            <div class="str">
+                            <a class="side-item" href="{{ route('cat', ['selflink'=> $value->selflink]) }}">{{ $value->name }}  (  {{" ".$sayi=\App\Models\TeamJerseys::query()->where('categoryid','=',$value->id)->count()}} )</a>
+                            </div>
                         @endforeach
                     </li>
                 </ul>
@@ -38,16 +31,17 @@
                     <div class="col-md-6 pb-4">
                         <div class="search-bar">
                             <form action="{{route('search')}}" method="GET">
-                              <div class="col-md-9">
-                              <input type="text" value="" name="q"  placeholder="arama...">
-                                <button type="submit" style="border: none;background: none;"><img src="https://img.icons8.com/ios-glyphs/30/000000/search--v1.png"/></button>
+                              <div class="col-md-9 divs">
+                              <input class="src" type="text" value="" name="q"  placeholder="   Ara">
+                                <button type="submit" style="border: none;background: none;"><i class="fas fa-search"></i></button>
                               </div>
                             </form>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    @foreach(\App\Models\TeamJerseys::all()->chunk(2) as $chunk)
+
+                    @foreach(\App\Models\TeamJerseys::simplePaginate(15)->chunk(2) as $chunk)
 
                     @foreach($chunk as $key =>$value)
 
@@ -58,9 +52,9 @@
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
 
-                                        <li style="margin-top: 190px;margin-left: 10px;"><a class="btn btn-success text-white mt-2" style="margin-left: 180px;margin-top: 100px;" href="{{route('sepet',['id'=>$value['id']])}}"><i><img
-                                                        src="{{asset('images/front/plus.png')}}" style="width: 30px;height: 30px;" alt=""></i></a></li>
+                                        <li style="margin-top: 190px;margin-left: 10px;"><a class="border:none; text-white mt-2" style="margin-left: 180px;margin-top: 100px;" href="{{route('sepet.sepet',['id'=>$value['id']])}}"><i class="fas fa-cart-plus" style="width: 30px;height: 30px;"></i></a></li>
                                     </ul>
+
 
                                 </div>
                             </div>
@@ -72,11 +66,11 @@
                                 </ul>
                                 <ul class="list-unstyled d-flex justify-content-center mb-1">
                                     <li>
-                                        <i><img src="{{asset('images/front/star.png')}}" style="height: 17px;width: 17px;" alt=""></i>
-                                        <i><img src="{{asset('images/front/star.png')}}" style="height: 17px;width: 17px;" alt=""></i>
-                                        <i><img src="{{asset('images/front/star.png')}}" style="height: 17px;width: 17px;" alt=""></i>
-                                        <i><img src="{{asset('images/front/star2.png')}}" style="height: 17px;width: 17px;" alt=""></i>
-                                        <i><img src="{{asset('images/front/star2.png')}}" style="height: 17px;width: 17px;" alt=""></i>
+                                        <i><img class="star" src="{{asset('images/front/star.png')}}" style="height: 17px;width: 17px;" alt=""></i>
+                                        <i><img class="star" src="{{asset('images/front/star.png')}}" style="height: 17px;width: 17px;" alt=""></i>
+                                        <i><img class="star" src="{{asset('images/front/star.png')}}" style="height: 17px;width: 17px;" alt=""></i>
+                                        <i><img class="star" src="{{asset('images/front/star2.png')}}" style="height: 17px;width: 17px;" alt=""></i>
+                                        <i><img class="star" src="{{asset('images/front/star2.png')}}" style="height: 17px;width: 17px;" alt=""></i>
 
                                     </li>
                                 </ul>
@@ -86,6 +80,7 @@
                     </div>
                     @endforeach
                     @endforeach
+                        {{$data->links()}}
                 </div>
 
                 <div div="row">

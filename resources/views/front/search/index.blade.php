@@ -9,17 +9,12 @@
                 <ul class="list-unstyled templatemo-accordion">
                     <li class="pb-3">
                     <li class="nav-item dropdown">
-                        @foreach(\App\Models\Category::all() as $key => $value)
-                            <a class="nav-link dropdown-toggle" href="{{route('cat',['selflink'=>$value['selflink']])}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{$value['name']}}
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{route('cat',['selflink'=>$value['selflink']])}}">Forma</a>
-                                <a class="dropdown-item" href="#">T-Shirt</a>
-                                <a class="dropdown-item" href="#">Aksesuar</a>
-                                <a class="dropdown-item" href="#">Antreman Kıyafetleri</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{route('cat',['selflink'=>$value['selflink']])}}">Hepsi</a>
+                        <div class="str" style="margin-bottom: 25px;">
+                            <a class="side-item" href="{{route('shop')}}"><h5> Hepsi ( {{$sayi=\App\Models\TeamJerseys::query()->count()}})  </h5></a>
+                        </div>
+                        @foreach(\App\Models\Category::all() as $value)
+                            <div class="str">
+                                <a class="side-item" href="{{ route('cat', ['selflink'=> $value->selflink]) }}">{{ $value->name }}  (  {{" ".$sayi=\App\Models\TeamJerseys::query()->where('categoryid','=',$value->id)->count()}} )</a>
                             </div>
                         @endforeach
 
@@ -57,7 +52,7 @@
                                         <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                             <ul class="list-unstyled">
 
-                                                <li style="margin-top: 190px;margin-left: 10px;"><a class="btn btn-success text-white mt-2" style="margin-left: 180px;margin-top: 100px;" href="{{route('sepet',['id'=>$value['id']])}}"><i><img
+                                                <li style="margin-top: 190px;margin-left: 10px;"><a class=" text-white mt-2" style="margin-left: 180px;margin-top: 100px;" href="{{route('sepet.sepet',['id'=>$value['id']])}}"><i><img
                                                                 src="{{asset('images/front/plus.png')}}" style="width: 30px;height: 30px;" alt=""></i></a></li>
                                             </ul>
 

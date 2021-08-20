@@ -82,7 +82,8 @@
                                 <li>Kategori : {{(\App\Models\Category::getField($data[0]['categoryid'],"name"))}}, Forma </li>
 
                                 <li>Takım : {{\App\Models\Teams::getField($data[0]['teamid'],"name")}} </li>
-                                <li>Marka : Nike,Addidas,Kappa</li>
+                                <li>Marka : Nike </li>
+
 
                             </ul>
 
@@ -119,7 +120,7 @@
                                     <button type="submit" class="btn btn-outline-success" name="submit" value="buy">Satın Al</button>
                                 </div>
                                 <div class="col d-grid">
-                                    <a class="btn btn-outline-primary" href="{{route('sepet',['id'=>$data[0]['id']])}}" role="button">Sepete ekle</a>
+                                    <a class="btn btn-outline-primary" href="{{route('sepet.sepet',['id'=>$data[0]['id']])}}" role="button">Sepete ekle</a>
                                    </div>
                             </div>
 

@@ -24,8 +24,21 @@
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label">Kategori Adı</label>
                                             <input type="text" name="name" class="form-control">
-                                            <span class="material-input"></span></div>
+                                            <span class="material-input"></span>
+                                        </div>
+                                            <select id="parent_id" name="parent_id" class="form-control">
+                                            <option value="0">Ana Kategori</option>
+                                                @foreach($allCategories as $rows)
+                                                    <option value="{{ $rows->id }}">{{ $rows->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        @if ($errors->has('parent_id'))
+                                            <span class="text-red" role="alert">
+                                             <strong>{{ $errors->first('parent_id') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
+
                                 </div>
 
                                 <button type="submit" class="btn btn-primary pull-right">Kategori Ekle</button>

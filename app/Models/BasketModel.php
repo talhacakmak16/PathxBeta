@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class BasketModel extends Model
 {
-    protected $fillable = ['id','name','price','image'];
+    protected $fillable = ['id','name','price','image','adet'];
 
 }

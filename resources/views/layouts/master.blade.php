@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <script src="https://kit.fontawesome.com/8d00dc281a.js" crossorigin="anonymous"></script>
     <link rel="apple-touch-icon" href="{{asset('assets/img/apple-icon.png')}}">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/favicon.ico')}}">
 
@@ -35,8 +36,8 @@
                 <i class=" mx-2"></i>
                 <span style="margin: -15px;font-family: 'Arial Black';font-size: inherit">{{\App\Helper\basketHelper::totalPrice()}} TL</span>
                 <i class=" mx-2"></i>
-                <a href="{{route('checkout')}}"><img style="width: 30px;height: 30px;"  src="{{asset('images\front\basket3.png')}}"></a>
-                <p style="margin-bottom: -3px;font-family: 'Arial Black';"><a href="{{route('basket.flush')}}"style="color: white;">Sepeti Temizle</a></p>
+                <a href="{{route('sepet.checkout')}}"><img style="width: 30px;height: 30px;"  src="{{asset('images\front\basket3.png')}}"></a>
+                <p style="margin-bottom: -3px;font-family: 'Arial Black';"><a href="{{route('sepet.flush')}}"style="color: white;">Sepeti Temizle</a></p>
             </div>
 
 
@@ -99,12 +100,16 @@
                           </li>
                       @endif
                   @else
+                      @if(Auth::user()->name == 'Admin')
                       <li class="nav-item dropdown">
                           <a id="navbarDropdown" class="nav-link " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                               {{ Auth::user()->name }}{{"  "}} <img src="{{asset('images/front/user.png')}}"style="height: 30px;width: 30px;" alt="">
                           </a>
 
                           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="{{route('admin.index')}}">
+                                  Admin Panel
+                              </a>
                               <a class="dropdown-item" href="#">
                                   Profil
                               </a>
@@ -119,6 +124,31 @@
                               </form>
                           </div>
                       </li>
+                          @endif
+                          @if(Auth::user()->name !='Admin')
+                              <li class="nav-item dropdown">
+                                  <a id="navbarDropdown" class="nav-link " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                      {{ Auth::user()->name }}{{"  "}} <img src="{{asset('images/front/user.png')}}"style="height: 30px;width: 30px;" alt="">
+                                  </a>
+
+                                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                      <a class="dropdown-item" href="#">
+                                          Profil
+                                      </a>
+                                      <a class="dropdown-item" href="{{ route('logout') }}"
+                                         onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                          {{ __('Çıkış') }}
+                                      </a>
+
+                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                          @csrf
+                                      </form>
+                                  </div>
+                              </li>
+                              @endif
+
                   @endguest
               </ul>
 
@@ -250,6 +280,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/js-image-zoom@0.7.0/js-image-zoom.js" type="application/javascript"></script>
+<script src="https://kit.fontawesome.com/8d00dc281a.js" crossorigin="anonymous"></script>
 @yield('script')
 <!-- End Script -->
 </body>
