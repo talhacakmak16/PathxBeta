@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3" id="img-container" >
-                        <img class="card-img img-fluid" src="{{asset($data[0]['image'])}}" alt="Card image cap" id="product-detail">
+                        <img class="card-img img-fluid" src="{{asset($w[0]['image'])}}" alt="Card image cap" id="product-detail">
                     </div>
                     <div class="row">
                         <!--Start Controls-->
@@ -61,28 +61,29 @@
                 <div class="col-lg-7 mt-5">
                     <div class="card">
                         <div class="card-body">
-                            <h1 class="h2">{{$data[0]['name']}}</h1>
-                            <p class="h3 py-2">{{$data[0]['price']}} TL</p>
+                            <h1 class="h2">{{$w[0]['name']}}</h1>
+                            <p class="h3 py-2">{{$w[0]['price']}} TL</p>
 
                             <ul class="list-inline">
                                 <li class="list-inline-item">
                                     <h6>Forma:</h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted"><strong>{{$data[0]['name']}}</strong></p>
+                                    <p class="text-muted"><strong>{{$w[0]['name']}}</strong></p>
                                 </li>
                             </ul>
 
                             <h6>Açıklama:</h6>
-                            <p>{{$data[0]['info']}}</p>
+                            <p>{{$w[0]['info']}}</p>
 
 
                             <h6>Özellikleri:</h6>
                             <ul class="list-unstyled pb-3">
-                                <li>Kategori : {{(\App\Models\Category::getField($data[0]['categoryid'],"name"))}}, Forma </li>
+                                <li>Kategori : {{(\App\Models\Category::getField($w[0]['categoryid'],"name"))}}, Forma </li>
 
-                                <li>Takım : {{\App\Models\Teams::getField($data[0]['teamid'],"name")}} </li>
-                                <li>Marka : Nike </li>
+                                <li>Takım : {{\App\Models\Teams::getField($w[0]['teamid'],"name")}} </li>
+                                <li>Marka : {{\App\Models\Brands::getField($w[0]['brandid'],"brand")}} </li>
+                                <li>{!! QrCode::generate(Request::url('/home')); !!} </li>
 
 
                             </ul>
@@ -120,7 +121,7 @@
                                     <button type="submit" class="btn btn-outline-success" name="submit" value="buy">Satın Al</button>
                                 </div>
                                 <div class="col d-grid">
-                                    <a class="btn btn-outline-primary" href="{{route('sepet.sepet',['id'=>$data[0]['id']])}}" role="button">Sepete ekle</a>
+                                    <a class="btn btn-outline-primary" href="{{route('sepet.sepet',['id'=>$w[0]['id']])}}" role="button">Sepete ekle</a>
                                    </div>
                             </div>
 

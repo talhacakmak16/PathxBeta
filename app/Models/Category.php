@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Models;
-
+use Database\Factories\CategoryFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
 {
+    use HasFactory;
     protected $guarded = [];
 
     static function getField($id,$field)
@@ -26,5 +28,9 @@ class Category extends Model
         return $this->hasMany(Category::class,'parent_id','id') ;
 
     }
+    public static function newFactory()
+   {
+       return CategoryFactory::new();
+   }
 
 }

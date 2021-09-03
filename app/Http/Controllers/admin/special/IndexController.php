@@ -30,7 +30,7 @@ class IndexController extends Controller
     public function store(Request $request)
     {
         $all = $request->except('_token');
-        $all['selflink']=mHelper::permalink('name');
+        $all['selflink']=mHelper::permalink($all['name']);
         $all['image'] = imageUpload::singleUpload(rand(1,900),'jersey',$request->file('image'));
         $insert = SpecialModel::create($all);
         if ($insert)

@@ -19,7 +19,7 @@ class AdminCtrl
     {
         if (Auth::check())
         {
-            if(Auth::user()->name  !='Admin')
+            if(Auth::user()->is_super_admin  != 1 )
             {
                 return redirect('/');
             }

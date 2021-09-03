@@ -48,7 +48,7 @@
                             <div class="col-md-4">
                                 <div class="card mb-4 product-wap rounded-0 forma">
                                     <div class="card rounded-0" href="{{route('detay',['selflink'=>$value['selflink']])}}">
-                                        <img class="card-img rounded-0 img-fluid"  src="{{asset($value['image'])}}">
+                                        <img class="card-img rounded-0 img-fluid" src="{{asset($value['image'])}}">
                                         <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                             <ul class="list-unstyled">
 

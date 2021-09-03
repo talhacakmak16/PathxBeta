@@ -12,7 +12,7 @@
                         <div class="str" style="margin-bottom: 25px;">
                             <a class="side-item" href="{{route('shop')}}"><h5> Hepsi ( {{$sayi=\App\Models\TeamJerseys::query()->count()}})  </h5></a>
                         </div>
-                        @foreach(\App\Models\Category::all() as $value)
+                        @foreach(\App\Models\Category::query()->where('parent_id',$w['id']) as $value)
                             <div class="str">
                                 <a class="side-item" href="{{ route('cat', ['selflink'=> $value->selflink]) }}">{{ $value->name }}  (  {{" ".$sayi=\App\Models\TeamJerseys::query()->where('categoryid','=',$value->id)->count()}} )</a>
                             </div>

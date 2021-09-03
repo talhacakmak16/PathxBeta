@@ -22,4 +22,9 @@ class IndexController extends Controller
     {
         return view('front.contact');
     }
+    public function profile()
+    {
+        $name = \Auth::user()->name;
+        return view('front.profile',compact('name'));
+    }
 }

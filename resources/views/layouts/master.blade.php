@@ -89,7 +89,7 @@
               <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                   @guest
                       @if (Route::has('login'))
-                          <li class="nav-item">
+                          <li class="nav-item user">
                               <a class="nav-link" href="{{ route('login') }}">{{ __('Giriş') }}</a>
                           </li>
                       @endif
@@ -100,56 +100,57 @@
                           </li>
                       @endif
                   @else
-                      @if(Auth::user()->name == 'Admin')
-                      <li class="nav-item dropdown">
-                          <a id="navbarDropdown" class="nav-link " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                              {{ Auth::user()->name }}{{"  "}} <img src="{{asset('images/front/user.png')}}"style="height: 30px;width: 30px;" alt="">
-                          </a>
+                      @if(Auth::user()->is_super_admin == 1 )
+                          <li class="nav-item dropdown">
+                              <a id="navbarDropdown" class="nav-link " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                  {{ Auth::user()->name }}{{"  "}} <img src="{{asset('images/front/user.png')}}"style="height: 30px;width: 30px;" alt="">
+                              </a>
 
-                          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="{{route('admin.index')}}">
-                                  Admin Panel
-                              </a>
-                              <a class="dropdown-item" href="#">
-                                  Profil
-                              </a>
-                              <a class="dropdown-item" href="{{ route('logout') }}"
-                                 onclick="event.preventDefault();
+                              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                  <a class="dropdown-item" href="{{ route('admin.index') }}">
+                                      Admin Panel
+                                  </a>
+                                  <a class="dropdown-item" href="{{ route('profile',['name'=>Auth::user()->name]) }}">
+                                      Profil
+                                  </a>
+                                  <a class="dropdown-item" href="{{ route('logout') }}"
+                                     onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                  {{ __('Çıkış') }}
-                              </a>
-
-                              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                  @csrf
-                              </form>
-                          </div>
-                      </li>
-                          @endif
-                          @if(Auth::user()->name !='Admin')
-                              <li class="nav-item dropdown">
-                                  <a id="navbarDropdown" class="nav-link " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                      {{ Auth::user()->name }}{{"  "}} <img src="{{asset('images/front/user.png')}}"style="height: 30px;width: 30px;" alt="">
+                                      {{ __('Çıkış') }}
                                   </a>
 
-                                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                      @csrf
+                                  </form>
+                              </div>
+                          </li>
+                      @endif
+                      @if(Auth::user()->is_super_admin != 1 )
+                          <li class="nav-item dropdown">
+                              <a id="navbarDropdown" class="nav-link " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                  {{ Auth::user()->name }}{{"  "}} <img src="{{asset('images/front/user.png')}}"style="height: 30px;width: 30px;" alt="">
+                              </a>
 
-                                      <a class="dropdown-item" href="#">
-                                          Profil
-                                      </a>
-                                      <a class="dropdown-item" href="{{ route('logout') }}"
-                                         onclick="event.preventDefault();
+                              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                  <a class="dropdown-item" href="{{ route('profile',['name'=>Auth::user()->name]) }}">
+                                      Profil
+                                  </a>
+                                  <a class="dropdown-item" href="{{ route('logout') }}"
+                                     onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                          {{ __('Çıkış') }}
-                                      </a>
+                                      {{ __('Çıkış') }}
+                                  </a>
 
-                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                          @csrf
-                                      </form>
-                                  </div>
-                              </li>
-                              @endif
+                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                      @csrf
+                                  </form>
+                              </div>
+                          </li>
+                      @endif
 
                   @endguest
+
               </ul>
 
           </div>

@@ -14,7 +14,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.index')}}">
+                <a href="{{route('admin.users.index')}}">
                     <i class="material-icons">person</i>
                     <p>Kullanıcılar</p>
                 </a>

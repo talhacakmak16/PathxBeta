@@ -40,6 +40,7 @@ class BasketController extends Controller
     {
         if (basketHelper::countData()!=0)
         {
+
             return view('front.basket.complete');
         }
         else
@@ -61,6 +62,7 @@ class BasketController extends Controller
         $json = json_encode(basketHelper::allList());
         $array =
             [
+                'userid'=>\Auth::id(),
                 'adress'=>$adress,
                 'phone' =>$phone,
                 'name' => $name,
@@ -68,6 +70,7 @@ class BasketController extends Controller
                 'json'=>$json
             ];
         $insert = Order::create($array);
+        Session::forget('basket');
         if ($insert)
         {
             Session::forget('basket');

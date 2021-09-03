@@ -25,17 +25,15 @@
                                 <tbody>
                                 @foreach($categories as $value)
                                      <tr>
-
-                                        <td>
+                                         <td>
                                             {{$value['name']}}
-
-                                                <table>
+                                               <table>
                                                     <tr>
-                                                @if(count($value->childs))
+                                                 @if(count($value->childs))
                                                     @include('admin.category.manageChild',['childs'=>$value->childs])
                                                     @endif
                                                     </tr>
-                                                </table>
+                                               </table>
 
                                         </td>
                                         <td><a href="{{route('admin.category.edit',['id'=>$value['id']])}}">Düzenle</a></td>

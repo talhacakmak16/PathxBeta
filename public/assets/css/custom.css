@@ -112,3 +112,9 @@ color: #9b04ff;
 {
     border: black solid 3px;
 }
+.cart
+{
+    height: 500px;
+    width: 100%;
+    margin-bottom: 50px;
+}

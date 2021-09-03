@@ -9,12 +9,11 @@
                     <li class="pb-3">
                     <li class="nav-item dropdown">
                         <div class="str" style="margin-bottom: 25px;">
-                        <a class="side-item" href="{{route('shop')}}"><h5> Hepsi ( {{$sayi=\App\Models\TeamJerseys::query()->count()}})  </h5></a>
+                            <a class="side-item" href="{{route('shop')}}"><h5> Hepsi ( {{$sayi=\App\Models\TeamJerseys::query()->count()}})  </h5></a>
                         </div>
-                        @foreach(\App\Models\Category::all() as $value)
-
+                        @foreach($categories as $value)
                             <div class="str">
-                            <a class="side-item" href="{{ route('cat', ['selflink'=> $value->selflink]) }}">{{ $value->name }}  (  {{" ".$sayi=\App\Models\TeamJerseys::query()->where('categoryid','=',$value->id)->count()}} )</a>
+                                <a class="side-item" href="{{ route('cat', ['selflink'=> $value->selflink]) }}">{{ $value->name }}  (  {{" ".$sayi=\App\Models\Category::query()->where('id','=',$value->id)->count()}} )</a>
                             </div>
                         @endforeach
                     </li>
@@ -48,7 +47,7 @@
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0 forma" >
                             <div class="card rounded-0" href="{{route('detay',['selflink'=>$value['selflink']])}}">
-                                  <img class="card-img rounded-0 img-fluid"  src="{{asset($value['image'])}}">
+                                  <img class="card-img rounded-0 img-fluid"  src="{{$value['image']}}">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
 

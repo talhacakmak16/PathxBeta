@@ -7,6 +7,9 @@ use App\Models\Brands;
 use App\Models\Category;
 use App\Models\TeamJerseys;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Image;
+use function Illuminate\Support\Facades\File;
 
 class TeamJerseyFactory extends Factory
 {
@@ -24,18 +27,28 @@ class TeamJerseyFactory extends Factory
      */
     public function definition()
     {
-       $images = \App\Models\TeamJerseys::query()->get('image');
+
+        $images = array
+        (
+         'bjk-forma.jpg',
+         'bs-forma.jpg',
+         'lakers.jpg',
+         'hollanda.jpg',
+         'türkiye.jpg',
+         'portekiz.jpg',
+         'laker.jpg',
+         'ingiltere.jpg',
+        );
         return [
 
-            'name' => $this->faker->name,
+            $x= 'name' => $this->faker->name,
             'info' => $this->faker->text(rand(120,200)),
-            'image' => $images,
+            'image' =>$images[rand(0,3)],
             'teamid' => rand(1,5),
             'brandid' => rand(1,3),
             'categoryid' => rand(1,3),
             'price'=> rand(100,500),
-            'selflink'=> mHelper::permalink('name'),
-
+            'selflink'=> mHelper::permalink($x),
         ];
 
     }

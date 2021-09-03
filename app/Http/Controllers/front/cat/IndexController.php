@@ -15,12 +15,11 @@ class IndexController extends Controller
 
          if ($c)
          {
+             $categories = Category::query()->where('parent_id', '=', 0)->get();
+             $allCategories = Category::query()->paginate(10);
              $w = Category::query()->where('selflink','=', $selflink)->first();
              $data = TeamJerseys::query()->where('categoryid', $w->id)->paginate(15);
-             return view('front.cat.index',[
-                 'info'=>$w,
-                 'data' => $data
-             ]);
+             return view('front.cat.index',compact('w','data','allCategories','categories'));
          }
          else
          {
